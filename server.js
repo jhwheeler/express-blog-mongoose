@@ -34,7 +34,7 @@ app.post('/blog-posts', jsonParser, (req, res) => {
     res.status(201).json(blogPost);
 });
 
-app.put('/blog-posts/:id', (req, res) => {
+app.put('/blog-posts/:id', jsonParser, (req, res) => {
     const requiredFields = ['title', 'content', 'author', 'publishDate'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -51,7 +51,7 @@ app.put('/blog-posts/:id', (req, res) => {
         return res.status(400).send(message);
     }
     console.log(`Updating blog post \`${req.body.id}\``);
-    const updatedPost = BlogPost.update({
+    const updatedPost = BlogPosts.update({
         id: req.params.id,
         title: req.params.title,
         content: req.params.content,

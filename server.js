@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const morgan = require('morgan');
-const bodyParser = require('bodyparser');
+const bodyParser = require('body-parser');
 
 const {BlogPosts} = require('./models');
 
@@ -20,7 +20,7 @@ app.get('/blog-posts', (req, res) => {
     res.json(BlogPosts.get());
 });
 
-app.post('/blog-posts', (req, res) => {
+app.post('/blog-posts', jsonParser, (req, res) => {
     const requiredFields = ['title', 'content', 'author', 'publishDate'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];

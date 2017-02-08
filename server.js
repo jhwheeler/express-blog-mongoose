@@ -21,7 +21,7 @@ app.get('/blog-posts', (req, res) => {
 });
 
 app.post('/blog-posts', jsonParser, (req, res) => {
-    const requiredFields = ['title', 'content', 'author', 'publishDate'];
+    const requiredFields = ['title', 'content', 'author'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -58,13 +58,13 @@ app.put('/blog-posts/:id', (req, res) => {
         author: req.params.author,
         publishDate: req.params.publishDate
     });
-    req.status(204).json(updatedPost);
+    res.status(204).json(updatedPost);
 });
 
 app.delete('/blog-posts/:id', (req, res) => {
     BlogPosts.delete(req.params.id);
     console.log(`Deleted post \`${req.params.id}\` from blog`);
-    req.status(204).end();
+    res.status(204).end();
 });
 
 app.listen(process.env.PORT || 8080, () => {

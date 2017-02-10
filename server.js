@@ -37,7 +37,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-    runserver().catch(err => console.error(err));
+    runServer().catch(err => console.error(err));
 };
 
 module.exports = {app, runServer, closeServer};

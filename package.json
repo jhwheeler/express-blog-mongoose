@@ -4,7 +4,7 @@
   "description": "Thinkful project: Creating a blog using Node and Express",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "Node",
@@ -18,5 +18,10 @@
     "express": "^4.14.1",
     "morgan": "^1.8.0",
     "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
   }
 }

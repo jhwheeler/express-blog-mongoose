@@ -1,12 +1,49 @@
 const express = require('express');
-const morgan = require('morgan');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+mongoose.Promise = global.Promise;
+
+const {PORT, DATABASE_URL} = require('./config');
+const {Post} = require('./models');
+
 const app = express();
+app.use(boderParser.json());
 
-app.use(morgan('common'));
+app.get('/restaurants', (req, res) => {
+    Restaurant
+        .find()
+        .limit(10)
+        .exec()
+        .then(restaurants => {
+            res.json({
+                restaurants: restaurants.map(
+                    (restaurant) => restaurant.apiRep())
+            });
+        })
+        .catch(
+            err => {
+                console.error(err);
+                res.status(500).json({message: 'Internal Server Error'});
+            });
+});
 
-const postsRouter = require('./postsRouter');
+app.get('/restaurants/:id', (req, res) => {
+    Restaurant
+        .findById(req.params.id)
+        .exec()
+        .then(restaurant => res.json(restaurant.apiRep()))
+        .catch(err => {
+            console.err(err);
+            res.status(500).json({message: 'Internal Server Error'});
+        });
+});
 
-app.use('/blog-posts', postsRouter);
+
+
+app.use('*', (req, res) => {
+    res.status(404).json({message: 'Not Found'});
+});
 
 let server;
 

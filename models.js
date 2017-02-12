@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require ('mongoose');
 
 const postSchema = mongoose.Schema({
     title: {type: String, required: true},
@@ -12,7 +12,6 @@ const postSchema = mongoose.Schema({
 
 postSchema.virtual('authorString').get(function() {
     return `${this.author.firstName} ${this.author.lastName}`.trim()});
-})
 
 postSchema.methods.apiRep = function() {
     return {

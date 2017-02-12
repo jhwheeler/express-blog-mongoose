@@ -1,9 +1,0 @@
-language: node_js
-node_js: node
-deploy:
-  provider: heroku
-  api_key:
-    secure: lai92W0bBZkHHwPC/mfpcX7PkOmvEuPSXYNzil6lCjLJ6a3ZCgTiFnh/nwHElg5UzVIey6lCMEiJF8wyNopC4fPwI9E12vaj+UAosO98OO9BNP4ucRW7dUYay2M/4bWqV4oFi5k3Tc/kPOSBR8mXght1ZrpNqg38q02NOxrVPff1HilYiGx6KYXSa1yDfCaiQ14n5vJdPLZX1wbD4aap6vLo5pHU+QWGCEfYe1YSxu20R4NAu5tCNooK66x76Z5Pd6yWhB/PDBf+HKXUFD3tLJZKKuTwxdu7UEVoOCrxkIueDygtFqYjP9wgYgET2l+HDLhk6kNP2R5w8ZTYbSjC7pixMieqe1xFvoSoxRX40g8VkWmczyMN2q8RDkmO68Me3lFynbgYfxLIgHt+8e43p2LMcK2vSvMZQuHAaSZ2Ke4g2G7wSwiHeqNJw4oLlViIbjb1U4DYbzI65rpfNqaqbyhAp0UdVIArbOVP7B+M8+bSzlsYxxcjTKJfyEW6SAcvJC/5KEoBjBHQiAPvOPcp0IFv2qWHGu+nUr3dbGozvEKq+1dZBxXEOjQVXHNaCayvR12rSGAN+yZV1hIQQITQeCoWh5Mn+/O3jwU0YAnVJRVQj9uYWVhA6dlZ+3wLQA12lxOmGSTwGUL4nrx+QslCx/KCU4Z1+4QuM4vJp2WHOWg=
-  app: pure-badlands-57760
-  on:
-    repo: jhwheeler/express-blog

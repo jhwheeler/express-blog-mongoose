@@ -60,7 +60,7 @@ describe('Posts API Resource', function() {
         it ('should return all existing posts', function() {
             let res;
             return chai.request(app)
-                .get('/posts')
+                .get('/blog-posts')
                 .then(function(_res) {
                     res = _res;
                     console.log(res.body);
@@ -76,7 +76,7 @@ describe('Posts API Resource', function() {
         it('should return posts with right field', function() {
             let resPost;
             return chai.request(app)
-                .get('/posts')
+                .get('/blog-posts')
                 .then(function(res) {
                     res.should.have.status(200);
                     res.should.be.json;
@@ -93,7 +93,7 @@ describe('Posts API Resource', function() {
                 })
                 .then(function (post) {
                     resPost.id.should.equal(post.id);
-                    resPost.author.should.equal(post.author);
+                    resPost.author.should.equal(post.apiRep().author);
                     resPost.title.should.equal(post.title);
                     resPost.content.should.equal(post.content);
                 });
@@ -106,7 +106,7 @@ describe('Posts API Resource', function() {
             const newPost = generateBlogData();
 
             return chai.request(app)
-                .post('/posts')
+                .post('/blog-posts')
                 .send(newPost)
                 .then(function(res) {
                     res.should.have.status(201);
@@ -116,9 +116,8 @@ describe('Posts API Resource', function() {
                         'id', 'title', 'author', 'content');
                     res.body.title.should.equal(newPost.title);
                     res.body.id.should.not.be.null;
-                    res.body.author.firstName.should.equal(newPost.author.firstName);
-                    res.body.author.lastName.should.equal(newPost.author.lastName);
-                    re.body.content.should.equal(newPost.content);
+                    res.body.author.should.equal(`${newPost.author.firstName} ${newPost.author.lastName}`);
+                    res.body.content.should.equal(newPost.content);
 
                     return Post.findById(res.body.id);
                 })
@@ -145,7 +144,7 @@ describe('Posts API Resource', function() {
                     updateData.id = post.id;
 
                     return chai.request(app)
-                        .put(`/posts/${post.id}`)
+                        .put(`/blog-posts/${post.id}`)
                         .send(updateData);
                 })
                 .then(function(res) {
@@ -169,7 +168,7 @@ describe('Posts API Resource', function() {
                 .exec()
                 .then(function(_post) {
                     post = _post;
-                    return chai.request(app).delete(`/posts/${post.id}`);
+                    return chai.request(app).delete(`/blog-posts/${post.id}`);
                 })
                 .then(function(res) {
                     res.should.have.status(204);

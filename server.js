@@ -29,7 +29,7 @@ app.get('/blog-posts', (req, res) => {
 });
 
 app.get('/blog-posts/:id', (req, res) => {
-    Restaurant
+    Post
         .findById(req.params.id)
         .exec()
         .then(post => res.json(post.apiRep()))
@@ -86,7 +86,7 @@ app.put('/blog-posts/:id', (req, res) => {
     Post
         .findByIdAndUpdate(req.params.id, {$set: toUpdate})
         .exec()
-        .then(post => res.status(204).end())
+        .then(post => res.status(201).end())
         .catch(err => res.status(500).json({message: 'Internal Server Error'}));
 });
 

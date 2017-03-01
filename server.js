@@ -92,7 +92,7 @@ app.put('/blog-posts/:id', (req, res) => {
 
 app.delete('/blog-posts/:id', (req, res) => {
     Post
-        .findByIdAndDelete(req.params.id)
+        .findByIdAndRemove(req.params.id)
         .exec()
         .then(post => res.status(204).end())
         .catch(err => res.status(500).json({message: 'Internal Server Error'}));
